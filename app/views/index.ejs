@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+        <%=title%>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/lib/chessboardjs/css/chessboard-1.0.0.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>
+                    <%=page_title%>
+                </h1>
+                <form class="form-inline" id="userNameForm">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="userNameInput" class="mr-2">Your Name</label>
+                        <input type="text" name="userNameInput" id="userNameInput" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-success mb-2">Add Your Name</button>
+                </form>
+                <h3 id="userName"></h3>
+                <div class="notification"></div>
+                <div id="chessBoard" style="width:450px;padding-top:50px; margin:auto;"></div>
+            </div>
+            <div class="col-md-3">
+                <h2>Online Players</h2>
+                <ul class="list-group" id="onlinePlayers">
+                    <li class="list-group-item">
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+    <script src="/lib/chessboardjs/js/chessboard-1.0.0.min.js"></script>
+    <script src="/js/chess.js"></script>
+    <script src="/js/socketClient.js"></script>
+</body>
+
+</html>
