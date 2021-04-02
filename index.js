@@ -1,4 +1,4 @@
-const app = require('./app/aap');
+const app = require('./app/app');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const socketSever = require('./app/controllers/socketServer');

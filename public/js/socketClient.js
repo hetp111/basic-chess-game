@@ -10,18 +10,22 @@ $(function () {
     });
     socket.on('roomDetail', (roomData) => {
         // $('#onlinePlayers').html('');
-        roomData.users.forEach(user => {
-            $('#onlinePlayers')
-                .append($('<li class="list-group-item" id="' + user.id + '">')
-                    .html('<button type="button" data-room="' + user.room + '" class="btn btn-primary btn-sm joinGameRequest">' + user.name + '</button>'));
-        });
+        // roomData.users.forEach(user => {
+        //     $('#onlinePlayers')
+        //         .append($('<li class="list-group-item" id="' + user.id + '">')
+        //             .html('<button type="button" data-room="' + user.room + '" class="btn btn-primary btn-sm joinGameRequest">' + user.name + '</button>'));
+        // });
+        console.log(roomData);
+        $('#onlinePlayers')
+                .append($('<li class="list-group-item" id="' + roomData.users[roomData.users.length-1].id + '">')
+                    .html('<button type="button" data-room="' + roomData.users[roomData.users.length-1].room + '" class="btn btn-primary btn-sm joinGameRequest">' + roomData.users[roomData.users.length-1].name + '</button>'));
+
     });
 
     socket.on('existingUsers', (userData) => {
-        // $('#onlinePlayers').html('');
+        $('#onlinePlayers').html('');
         userData.users.forEach(user => {
             if (userData.currentUserId != user.id) {
-
                 $('#onlinePlayers')
                     .append($('<li class="list-group-item" id="' + user.id + '">')
                         .html('<button type="button" data-room="' + user.room + '" class="btn btn-primary btn-sm joinGameRequest">' + user.name + '</button>'));

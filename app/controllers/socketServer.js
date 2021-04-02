@@ -1,5 +1,3 @@
-//const localStorage = require('localStorage');
-
 const users = [];
 
 function randomRoomId(){
@@ -13,37 +11,31 @@ function randomRoomId(){
     return roomId;
 
 }
+
 module.exports = function(io){
 
     io.on('connection', (socket) => {
         socket.on('submitName', (formData) => {
-
             let userName = formData.name;
             let room = randomRoomId();
-
             users.push({
                 id: socket.id,
                 name: userName,
                 room: room
             });
-            //localStorage.setItem('users', JSON.stringify(users));
-
-           // console.log(users);
-
             socket.join(room);
             socket.broadcast.emit("roomDetail", {
                 users: users,
             });
-
         });
 
-        socket.emit('existingUsers', {
+        socket.broadcast.emit('existingUsers', {
             users:users,
             currentUserId: socket.id
         });
 
+
         socket.on('sendJoinRequest', (requestData) => {
-            //console.log(requestData.room);
             let user = users.filter(user=>user.id == socket.id)[0];
             socket.broadcast.to(requestData.room).emit('joinRequestRecieved', {
                 id: user.id,

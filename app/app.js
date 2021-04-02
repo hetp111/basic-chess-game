@@ -9,8 +9,8 @@ app.use('/', express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req, res) => {
     res.render('index', {
-        title: 'Chess Application',
-        page_title: 'Chess Board'
+        title: 'Chess App',
+        page_title: 'Chess'
     });
 });
 
